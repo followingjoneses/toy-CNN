@@ -1,7 +1,7 @@
 load dataset X_train y_train;
 
 m = 7780;
-filter_num = 100;
+filter_num = 200;
 image_dim = 28;
 filter_dim = 8;
 pool_dim = 3;
@@ -16,7 +16,7 @@ y_train = y_train(p, :);
 
 Wc = 0.1*randn(filter_dim, filter_dim, filter_num);
 bc = zeros(filter_num, 1);
-r  = sqrt(6) / sqrt(output_dim+hidden_size+1);
+r  = sqrt(6) / sqrt(output_dim+hidden_size);
 Wd = rand(output_dim, hidden_size) * 2 * r - r;
 bd = zeros(output_dim, 1);
 

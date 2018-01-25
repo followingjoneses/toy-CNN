@@ -30,11 +30,11 @@ function [L, grad] = costFunction(params, X, y, filter_dim, filter_num, pool_dim
     parfor i = 1:m
         for j = 1:filter_num
             % mean pooling
-%             delta_conv(:, :, j, i) = ...
-%                 (1/pool_dim^2) * kron(delta_pool(:, :, j, i), ones(pool_dim));
-            % max pooling
             delta_conv(:, :, j, i) = ...
-                kron(delta_pool(:, :, j, i), ones(pool_dim));
+                (1/pool_dim^2) * kron(delta_pool(:, :, j, i), ones(pool_dim));
+            % max pooling
+%             delta_conv(:, :, j, i) = ...
+%                 kron(delta_pool(:, :, j, i), ones(pool_dim));
         end
     end
     delta_conv = activations .* (1-activations) .* delta_conv;

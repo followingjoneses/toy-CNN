@@ -1,2 +1,5 @@
 validation_data/
 training_data/
+test_data/
+answer/
+*.mat

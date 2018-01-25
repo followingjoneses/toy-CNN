@@ -12,17 +12,17 @@ function pool_features = pool(pool_dim, cov_features)
         for j = 1:filter_num
             feature = cov_features(:, :, j, i);
             % mean pooling
-%             temp = conv2(feature, pool_filter, 'valid');
-%             pooled = temp(1:pool_dim:end, 1:pool_dim:end) ./ (pool_dim * pool_dim);
-%             pool_features(:, :, j, i) = pooled;
+            temp = conv2(feature, pool_filter, 'valid');
+            pooled = temp(1:pool_dim:end, 1:pool_dim:end) ./ (pool_dim * pool_dim);
+            pool_features(:, :, j, i) = pooled;
             % max pooling
-            for k = 1:pool_dim:cov_dim-pool_dim+1
-                for h = 1:pool_dim:cov_dim-pool_dim+1
-                    tmp = feature(k:k+pool_dim-1, h:h+pool_dim-1);
-                    max_value = max(max(tmp));
-                    pool_features((k-1)/pool_dim+1, (h-1)/pool_dim+1, j, i) = max_value;
-                end
-            end
+%             for k = 1:pool_dim:cov_dim-pool_dim+1
+%                 for h = 1:pool_dim:cov_dim-pool_dim+1
+%                     tmp = feature(k:k+pool_dim-1, h:h+pool_dim-1);
+%                     max_value = max(max(tmp));
+%                     pool_features((k-1)/pool_dim+1, (h-1)/pool_dim+1, j, i) = max_value;
+%                 end
+%             end
         end
     end
 end
